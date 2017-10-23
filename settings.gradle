@@ -1,0 +1,2 @@
+include ':openCVLibrary330'
+include ':oRB_SLAM2_Android'

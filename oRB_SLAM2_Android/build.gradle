@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
+
+    defaultConfig {
+        applicationId "orb.slam2.android"
+        minSdkVersion 14
+        targetSdkVersion 19
+
+        multiDexEnabled true
+
+        ndk {
+            moduleName "lapack"
+            abiFilters = [ 'arm64-v8a' ]
+
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            testCoverageEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+}
+
+dependencies {
+    compile project(':openCVLibrary330')
+    compile 'com.android.support:support-v4:19.1.0'
+}
